@@ -96,12 +96,12 @@ body, html {
   <a href="https://cherrera543.github.io/Sign-In.html" onclick="w3_close()" class="w3-bar-item w3-button">PROFILE</a>
 </nav>
 <div style="padding: 68px" class="tab">
-  <button class="tablinks" style="display: active" onclick="openTab(event, 'My Profile')">My Profile</button>
-  <button class="tablinks" style="display: none" onclick="openTab(event, 'University Search')">University Search</button>
-  <button class="tablinks" style="display: none" onclick="openTab(event, 'Rankings')">Rankings</button>
+  <button class="tablinks" onclick="openTab(event, 'My Profile')">My Profile</button>
+  <button class="tablinks" onclick="openTab(event, 'University Search')">University Search</button>
+  <button class="tablinks" onclick="openTab(event, 'Rankings')">Rankings</button>
 </div>
 
-<div id="My Profile" class="tabcontent">
+<div style="display: active" id="My Profile" class="tabcontent">
 <!-- Need to add edit button-->
   <h3>My Profile</h3>
   <p>Location:</p>
@@ -110,13 +110,13 @@ body, html {
   <p>My Rankings: (List with hyperlinks to ranking page and criteria, leading university underneath)</p>
 </div>
 
-<div id="University Search" class="tabcontent">
+<div style="display: none" id="University Search" class="tabcontent">
   <h3>Universities</h3>
   <p>Search Function (university clicked will display profile below)</p>
   <p>Recommended Universities (Display six recommended universities</p>
 </div>
 
-<div id="Rankings" class="tabcontent">
+<div style="display: none" id="Rankings" class="tabcontent">
   <h3>Ranking</h3>
   <p>Ranking templates (clicking one will expand it below and show button to create it)</p>
 </div>
