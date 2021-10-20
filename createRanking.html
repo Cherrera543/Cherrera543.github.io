@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<title>Recommended University - Sign In</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+.w3-bar .w3-button {
+  padding: 16px;
+}
+
+ul li{
+  font-size: 14px;
+}
+.section {
+  display: block;
+  background-color: #E7E9EB;
+  width: 100%;
+  padding: 30px;
+  margin: 20px;
+}
+.column {
+  float: left;
+  width: 50%;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.addButton{
+  display: block;
+  margin:auto;
+}
+.removeButton{
+  float:right;
+  margin-left:-50%;
+  margin-top:2em;
+}
+
+</style>
+<body>
+
+<!-- Navbar (sit on top) -->
+<div class="w3-top">
+  <div class="w3-bar w3-white w3-card" id="myNavbar">
+    <a href="https://cherrera543.github.io/" class="w3-bar-item w3-button w3-wide">Recommended University</a>
+    <!-- Right-sided navbar links -->
+    <div class="w3-right w3-hide-small">
+      <a href="https://cherrera543.github.io/#about" class="w3-bar-item w3-button">ABOUT</a>
+      <a href="https://cherrera543.github.io/Sign-In.html" class="w3-bar-item w3-button">PROFILE</a>
+    </div>
+    <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+    <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="https://cherrera543.github.io/#about" onclick="w3_close()" class="w3-bar-item w3-button">ABOUT</a>
+  <a href="https://cherrera543.github.io/Sign-In.html" onclick="w3_close()" class="w3-bar-item w3-button">PROFILE</a>
+</nav>
+    <div class = "section">
+      <div class="row">
+    
+         <div class="column">
+           <h3>
+             Add the Universities to be Ranked
+           </h3>
+           <select id="universities">
+			        <option value="ksu">Kansas State University</option>
+			        <option value="ku">University of Kansas</option>
+			        <option value="wu">Washburn University</option>
+              <option value="wsu">Wichita State University</option>
+		       </select>
+    
+           <button onclick="addItem()" class="buttonClass">
+              Add item</button>
+           <button onclick="removeItem()" class="buttonClass">
+           Remove item</button>
+         </div>
+         <div class="column">
+           <h5>Universities Added:</h5>
+           <ul id="list"></ul>
+         </div>
+       </div>
+    </div>
+    
+    <div id="ranking" class="section">
+       <button onclick="removeSection(this)" class="removeButton">X</button>
+       <h3>Ranking</h3>
+       <div class="column">
+       <label for="title">Title:</label>
+       <input type="text" list="aQuestions" id="title" size="40">
+       <datalist id="aQuestions">
+         <option>Major</option>
+         <option>Tutoring</option>
+       </datalist>
+       <datalist id="fQuestions">
+         <option>Scholarships</option>
+         <option>Tuition</option>
+       </datalist>
+       <datalist id="sQuestions">
+         <option>Clubs</option>
+         <option>Organizations</option>
+       </datalist>
+     </div>
+     <div class="column">
+       <label for="type">Type of Ranking: </label>
+       <select onchange="updateQuestions()" id="type">
+         <optgroup style="font-size:14px">
+			    <option value="aQuestions">Academic</option>
+			    <option value="fQuestions">Financial</option>
+			    <option value="sQuestions">Social</option>
+         </optgroup>
+		   </select>
+       <label for="custom">Custom Ranking</label>
+       <input type="checkbox" id=custom value="Custom" onclick="customRank(this)">
+     </div>
+     <br>
+     <br><button onclick="newSection()" class="addButton">New Ranking</button>
+   </div>
+ </body>
+ 
+</html>
+
+
+<script>
+
+
+
+// Toggle between showing and hiding the sidebar when clicking the menu icon
+var mySidebar = document.getElementById("mySidebar");
+
+function w3_open() {
+  if (mySidebar.style.display === 'block') {
+    mySidebar.style.display = 'none';
+  } else {
+    mySidebar.style.display = 'block';
+  }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+}
+
+
+       function addItem() {
+       			var select = document.getElementById('universities');
+						var option = select.options[select.selectedIndex];
+            var a = document.getElementById("list");
+            var li = document.createElement("li");
+            li.setAttribute('id', option.value);
+            li.appendChild(document.createTextNode(option.text));
+            a.appendChild(li);
+            //Add to all custom rankings
+        }
+ 
+        // Creating a function to remove item from list
+        function removeItem() {
+ 						var select = document.getElementById('universities');
+						var option = select.options[select.selectedIndex];
+            // Declaring a variable to get select element
+            var a = document.getElementById("list");
+            var item = document.getElementById(option.value);
+            a.removeChild(item);
+            //Remove from all Custom Rankings
+        }
+        
+        function newSection(){
+        	var elem = document.getElementById('ranking');
+          var clone = elem.cloneNode(true);
+          
+          cleanUp(clone);
+          document.body.appendChild(clone);
+        }
+        function cleanUp(clone){
+        	for (var i = 0; n = clone.childNodes[i]; ++i) {
+        		if (n.childNodes && n.tagName != 'INPUT') {
+            		cleanUp(n);
+        		} else if (n.tagName == 'INPUT' && n.type == 'text') {
+            	n.value = '';
+        		}
+    			}
+        }
+        function removeSection(button){
+        	if(document.body.childElementCount >5){
+          var parent = button.parentNode;
+          var grand = parent.parentNode;
+          grand.removeChild(parent);
+          }
+        }
+        function updateQuestions(){
+          var x = document.getElementById('type').value
+          document.getElementById('title').value = "";
+          document.getElementById('title').setAttribute('list', x);
+        }
+        function customRank(node){
+        	var parent = node.parentNode;
+          var grand = parent.parentNode;
+          
+          
+          
+        }
+      
+    
+</script>
+
+</body>
+</html>
