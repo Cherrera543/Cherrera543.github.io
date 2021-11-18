@@ -97,8 +97,8 @@ body, html {
 </nav>
 <div style="padding: 68px" class="tab">
   <button class="tablinks" onclick="openTab(event, 'My Profile')">My Profile</button>
-  <button class="tablinks" onclick="openTab(event, 'University Search')">University Search</button>
-  <button class="tablinks" onclick="openTab(event, 'Rankings')">Rankings</button>
+  <button class="tablinks" onclick="openTab(event, 'University Search')">My Universities</button>
+  <button class="tablinks" onclick="openTab(event, 'Rankings')">My Rankings</button>
 </div>
 
 <div style="display: active" id="My Profile" class="tabcontent">
@@ -106,14 +106,22 @@ body, html {
   <h3>My Profile</h3>
   <p>Location:</p>
   <p>Major:</p>
-  <p>My Universities: (List when clicked will display university profiles below)</p>
-  <p>My Rankings: (List with hyperlinks to ranking page and criteria, leading university underneath)</p>
 </div>
 
 <div style="display: none" id="University Search" class="tabcontent">
   <h3>Universities</h3>
-  <p>Search Function (university clicked will display profile below)</p>
-  <p>Recommended Universities (Display six recommended universities</p>
+  <input type="text" onchange="displayProfile" list="allUniversities" id="search" size="40">
+  <datalist id="allUniversities">
+    <option>Kansas State University</option>
+			        <option >University of Kansas</option>
+			        <option >Washburn University</option>
+              <option >Wichita State University</option>
+  </datalist>
+  <div class="profile" id="profile">
+      <h3 id="nameUni">University Name</h3>
+      <label for="tuition">Yearly Tuition:</label>
+      <p id="tuition">Tuition Here</p>
+  </div>
 </div>
 
 <div style="display: none" id="Rankings" class="tabcontent">
@@ -157,6 +165,11 @@ function w3_open() {
 // Close the sidebar with the close button
 function w3_close() {
     mySidebar.style.display = "none";
+}
+
+function displayProfile() {
+	var x = document.getElementById('search').value
+  
 }
 </script>
 
